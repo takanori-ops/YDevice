@@ -1,0 +1,28 @@
+{% extends "youtubedevice/base.html" %}
+{% block content %}
+<div class="container">
+  <h1>配信者一覧</h1>
+  <h5>気になる配信者が使用している機材を探しましょう</h5>
+  {% if user.is_authenticated %}
+    <a class="btn btn-primary my-3" href="{% url 'YoutubeDevice:cards_create' %}" role="button">作成</a>
+  {% endif %}
+
+  <div class="card-columns">
+    {% for card in card_list %}
+    <a href="{% url 'YoutubeDevice:cards_detail' card.pk %}" class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ card.title }}</h5>
+        {% if card.pic_path != null %}
+        <img src = "{{ card.pic_path }}" height=auto width=auto>
+        {% else %}
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png">
+        {% endif %}
+        <footer>
+          <small class="text-muted">作成者: {{ card.user.username }}</small>
+        </footer>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

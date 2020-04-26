@@ -1,0 +1,38 @@
+{% extends "youtubedevice/base.html" %}
+{% block content %}
+<h1>Youtuber詳細</h1>
+{% if card.pic_path != null %}
+<a href="{{ card.youtube_channel }}"><img src = "{{ card.pic_path }}" height=auto width=auto></a>
+{% else %}
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png">
+{% endif %}
+<dl class="row">
+
+  <dt class="col-sm-3">配信者名</dt>
+  <dd class="col-sm-9">{{ card.streamer }}</dd>
+  <dt class="col-sm-3">Channel</dt>
+  <dd class="col-sm-9">
+    <a href="{{ card.youtube_channel }}">{{ card.youtube_channel }}</a>
+  </dd>
+  <dt class="col-sm-3">機材1</dt>
+  <dd class="col-sm-9">{{ card.device1 }}</dd>
+  <dt class="col-sm-3">スペック１</dt>
+  <dd class="col-sm-9">{{ card.device1_spec }}</dd>
+  <dt class="col-sm-3">機材2</dt>
+  <dd class="col-sm-9">{{ card.device2 }}</dd>
+  <dt class="col-sm-3">スペック2</dt>
+  <dd class="col-sm-9">{{ card.device2_spec }}</dd>
+  <dt class="col-sm-3">閲覧回数</dt>
+  <dd class="col-sm-9">{{ card.viewed_count }}</dd>
+  <dt class="col-sm-3">ゲームタイトル</dt>
+  <dd class="col-sm-9">{{ card.gametitle }}</dd>
+  <dt class="col-sm-3">Memo</dt>
+  <dd class="col-sm-9">{{ card.description }}</dd>
+  <dt class="col-sm-3">編集者</dt>
+  <dd class="col-sm-9">{{ card.user.username }}</dd>
+</dl>
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'YoutubeDevice:cards_update' card.pk  %}" role="button">編集</a>
+<a class="btn btn-danger" href="{% url 'YoutubeDevice:cards_delete' card.pk  %}" role="button">削除</a> 
+{% endif%}
+{% endblock %}

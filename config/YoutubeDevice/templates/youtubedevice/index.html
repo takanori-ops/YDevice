@@ -1,0 +1,13 @@
+{% extends "youtubedevice/base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="display-4">YoutubeDevice</h1>
+    <p class="lead">気になる動画配信者が使用している機材まとめです</p>
+    お問い合わせのメールなどは<a href="mailto:takanori2040@gmail.com">こちら</a>へ
+    <hr class="my-4">
+    <p>このアプリケーションはDjangoで作られています。</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">ログイン</a>
+    <a class="btn btn-primary btn-lg" href="{% url 'YoutubeDevice:signup' %}" role="button">サインアップ</a>
+  </div>
+{% endblock %}
